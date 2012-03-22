@@ -1,5 +1,5 @@
 ﻿<a name="HOLTop" />
-# Hands-on Lab's Title #
+# Sending Push Notifications using Windows Azure and the Windows Push Notification Service #
 ---
 
 <a name="Overview" />
