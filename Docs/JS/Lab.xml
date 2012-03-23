@@ -9,7 +9,7 @@
   <Title>Sending Push Notifications using Windows Azure and the Windows Push Notification Service</Title>
   <Version>1.0.0</Version>
   <Source>Source</Source>
-  <DependencyChecker>.\Source\JS\Setup\Dependencies.depi</DependencyChecker>
+  <DependencyChecker>..\Source\JS\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
 	<Property Name="GitHubRepository" Value="https://github.com/microsoft-dpe/HOL-Windows8PushNotificationsWithWindowsAzure/" />
   </CustomProperties>   
