@@ -174,7 +174,7 @@ The application you deploy in this exercise requires both compute and storage se
 <a name="Ex1Task2" />
 #### Task 2 – Updating the ServiceConfiguration.cscfg with your Storage Account Name and Key ####
 
-1.	Next, Open **/Server/ServiceConfiguration.cscfg** 
+1.	Next, open **Assets/Server/ServiceConfiguration.cscfg**. 
 
 	![Configuring the storage account connection strings](images/configuring-the-storage-account-connection-st.png?raw=true)
 
@@ -223,7 +223,7 @@ The application you deploy in this exercise requires both compute and storage se
 
 	>**Note:** Keep this browser open until the end of the lab as it can be used in subsequent steps.  If you prefer to close the browser, copy the three credentials to notepad for later use.
 
-1.	Open **/Server/ServiceConfiguration.cscfg** and replace **[YOUR_WNS_PACKAGE_SID]** with the Package Security Identifier (SID)  and the **[YOUR_WNS_CLIENT_SECRET]** with the Client secret.
+1.	Open **Assets/Server/ServiceConfiguration.cscfg** and replace **[YOUR_WNS_PACKAGE_SID]** with the Package Security Identifier (SID)  and the **[YOUR_WNS_CLIENT_SECRET]** with the Client secret.
 
 	![Updating ServiceDefinition.cscfg with WNS Credentials](images/updating-servicedefinitioncscfg-with-wns-cred.png?raw=true)
 
@@ -247,11 +247,11 @@ The application you deploy in this exercise requires both compute and storage se
 
 	_Hosted service summary page_
 
-1.	In the **Create a new Deployment** dialog click **Browse Locally** to select a **Package location** and navigate to the **/Server** folder where you performed the configuration in the prior task and then select **/Server/WindowsAzureAppServer.cspkg**.
+1.	In the **Create a new Deployment** dialog click **Browse Locally** to select a **Package location** and navigate to the **Assets/Server** folder where you performed the configuration in the prior task and then select **WindowsAzureAppServer.cspkg**.
 
 	>**Note:** The _.cspkg_ file is an archive file that contains the binaries and files required to run a service - in this case it’s the Notification App Server ASP.NET MVC application. We used Visual Studio to create the service package for you using **Build | Publish** for the Windows Azure project.
 
-1.	Now, to choose the **Configuration File**, click **Browse Locally** and select **/Server/ServiceConfiguration.cscfg** in the same **/Server** folder that you used in the previous step.
+1.	Now, to choose the **Configuration File**, click **Browse Locally** and select **Assets/Server/ServiceConfiguration.cscfg** in the same **Assets/Server** folder that you used in the previous step.
 
 	>**Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for WNS and Windows Azure Storage that you performed in the previous exercise.
 
@@ -293,7 +293,7 @@ In this exercise, you will configure your client application to request a notifi
 
 	_Updating your client app with WNS credentials_
 
-1.	To enable your application to receive Wide Tile notifications Click **Browse** on Wide Logo, navigate to the **/Client**  folder and select /Client/**widelogo.png**.
+1.	To enable your application to receive Wide Tile notifications Click **Browse** on Wide Logo, navigate to the **Assets/Client**  folder and select **widelogo.png**.
 
 	![Adding a wide logo to your application](images/adding-a-wide-logo-to-your-application.png?raw=true)
 
@@ -319,7 +319,7 @@ In this exercise, you will configure your client application to request a notifi
 #### Task 2 – Updating the Client Codebase for Notifications ####
 
 1.	In Solution Explorer **Right click** on the **js** folder and select add existing item.
-1.	Browse to the **/Client**  folder and select **/Client/notifications.js** and press **Add**.
+1.	Browse to the **Assets/Client**  folder and select **notifications.js** and press **Add**.
 
 	![Add notifications.js to your client application](images/add-notificationsjs-to-your-client-applicatio.png?raw=true)
 
