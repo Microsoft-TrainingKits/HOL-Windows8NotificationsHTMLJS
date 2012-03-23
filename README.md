@@ -12,7 +12,16 @@ In this hands-on lab, you will learn how to deploy a pre-packaged version of the
 
 ### Repository Structure ###
 
-{TBD}
+In the **root** folder of this repository you will find the Hands-On Lab (HOL) document, **HOL.md**. Before beginning with the HOL exercises, make sure you have followed all the required steps indicated at the setup section of the HOL document. 
+
+In the **Source** folder you will find the source code of each of the exercises, a well as the assets and setup scripts. Throughout the HOL you will be instructed to open and explore the different solutions from the source folder. It is typically comprised of the following subfolders:
+
+- **Assets:** This folder contains files that are used throughout the exercises.
+- **_Exercise Name_:** Each exercise that requires a programming solution has its own code folder.
+  - **Begin:** The begin solution is the initial incomplete solution that you will finish by following the steps of the corresponding exercise.
+  - **End:** The end solution is the final result you will achieve at the end of an exercise.
+- **Setup:** This folder contains the dependency files and the setup scripts necessary to initialize specific configurations of the lab, being its execution is required in the majority of the Hands-on Labs.
+
 
 ### Get Started ###
 
