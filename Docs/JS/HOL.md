@@ -1,5 +1,5 @@
 ﻿<a name="HOLTop" />
-# Sending Push Notifications using Windows Azure and the Windows Push Notification Service #
+# Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service #
 ---
 
 <a name="Overview" />
@@ -94,7 +94,7 @@ The application you deploy in this exercise requires both compute and storage se
 
 	_Choosing a subscription to host the storage account_
 
-1.	In the textbox labeled **Enter a URL**, enter the name for your storage account, for example, **<NotificationAppServer >**, where _\<NotificationAppServer\>_ is a unique name. Windows Azure uses this value to generate the endpoint URLs for the storage account services.
+1.	In the textbox labeled **Enter a URL**, enter the name for your storage account, for example, **\<NotificationAppServer\>**, where _\<NotificationAppServer\>_ is a unique name. Windows Azure uses this value to generate the endpoint URLs for the storage account services.
 
 	![Choosing the URL of the new storage account](images/choosing-the-url-of-the-new-storage-account.png?raw=true)
 
@@ -115,7 +115,7 @@ The application you deploy in this exercise requires both compute and storage se
 
 	_Configuring a new affinity group_
 
-1.	Back in the **Create a New Storage Account** dialog, click **Create** to register your new storage account. Wait until the account provisioning process completes and updates the **Storage Accounts** tree view. Notice that the **Properties** pane shows the **URL** assigned to each service in the storage account. Record the public storage account name-this is the first segment of the URL assigned to your endpoints.
+1.	Back in the **Create a New Storage Account** dialog, click **Create** to register your new storage account. Wait until the account provisioning process completes and updates the **Storage Accounts** tree view. Notice that the **Properties** pane shows the **URL** assigned to each service in the storage account. Record the public storage account name, this is the first segment of the URL assigned to your endpoints.
 
 	![Storage account successfully created](images/storage-account-successfully-created.png?raw=true)
 
@@ -157,11 +157,11 @@ The application you deploy in this exercise requires both compute and storage se
 
 	![Choosing an affinity group](images/choosing-an-affinity-group.png?raw=true)
 
-	>**Note:** By choosing this affinity group, you ensure that the hosted service is deployed to the same data center as the storage account that you provisioned earlier.
+	> **Note:** By choosing this affinity group, you ensure that the hosted service is deployed to the same data center as the storage account that you provisioned earlier.
 
 1.	Select the option labeled **Deploy not Deploy**.
 
-	>**Note:** While you can create and deploy your service to Windows Azure in a single operation by completing the **Deployment Options** section, for this hands-on lab, you will defer the deployment step until we have finished the configuration.
+	> **Note:** While you can create and deploy your service to Windows Azure in a single operation by completing the **Deployment Options** section, for this hands-on lab, you will defer the deployment step until we have finished the configuration.
 
 1.	Click **OK** to create the hosted service and then wait until the provisioning process completes.
 
@@ -173,6 +173,7 @@ The application you deploy in this exercise requires both compute and storage se
 
 <a name="Ex1Task2" />
 #### Task 2 – Updating the ServiceConfiguration.cscfg with your Storage Account Name and Key ####
+In this task, you will update the Connection String values within the ServiceConfiguration file using the Storage Account you created in the previous task.
 
 1.	Next, open **Assets/Server/ServiceConfiguration.cscfg**. 
 
@@ -180,8 +181,8 @@ The application you deploy in this exercise requires both compute and storage se
 
 	_Configuring the storage account connection strings_
 
-1.	Replace the placeholder labeled [YOUR_ACCOUNT_NAME] with the Windows Azure Storage **Account Name** that you created earlier.
-1.	Replace the placeholder labeled [YOUR_ACCOUNT_KEY] with the Windows Azure Storage account **Primary Access Key** value that you created earlier, when you created the storage account in Task 1. Again, replace both instances of the placeholder, one for each connection string.
+1.	Replace the placeholder labeled _[YOUR_ACCOUNT_NAME]_ with the Windows Azure Storage **Account Name** that you created earlier.
+1.	Replace the placeholder labeled _[YOUR_ACCOUNT_KEY]_ with the Windows Azure Storage account **Primary Access Key** value that you created earlier, when you created the storage account in **Task 1**. Again, replace both instances of the placeholder, one for each connection string.
 
 	![Setting the storage account connection strings](images/setting-the-storage-account-connection-string.png?raw=true)
 
@@ -191,31 +192,32 @@ The application you deploy in this exercise requires both compute and storage se
 
 <a name="Ex1Task3" />
 #### Task 3 – Requesting WNS Credentials and updating the ServiceConfiguration.cscfg ####
+In this task, you will obtain the Windows Push Notification Services (WNS) credentials and use them to update the ServiceConfiguration file.
 
-1.	To request WNS credentials you will require your publisher credentials for your metro style app.  Launch Visual Studio 11 Beta and open your existing HTML5/JS Metro Style application or create a new application. 
+1.	To request **WNS** credentials you will require your publisher credentials for your metro style app.  Launch **Visual Studio 11 Beta** and open your existing HTML5/JS Metro Style application or create a new application. 
 
-	>**Note:**  If you do not have an existing client application for step 1 in Visual Studio 11 Beta for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
+	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 11 Beta for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
 
-1.	In solution explorer open your **package.appxmanifest** and select the **packaging tab**.  We will use the **Package Display Name** and **Publisher** fields for creating your WNS Credentials.
+1.	In solution explorer open your **package.appxmanifest** and select the **packaging tab**.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
 
 	![Opening package.appxmanifest](images/opening-packageappxmanifest.png?raw=true)
 
 	_Opening package.appxmanifest_
 
-1.	Navigate to the Windows Push Notifications and Live Connect portal (http://manage.dev.live.com/build).
+1.	Navigate to the **Windows Push Notifications & Live Connect** portal (http://manage.dev.live.com/build).
 
 	![Login to request WNS credentials](images/login-to-request-wns-credentials.png?raw=true)
 
 	_Login to request WNS credentials_
 
 1.	Sign in using your **Windows Live ID**.
-1.	Follow the Step 1 and Step 2 provided in the portal to supply your package name and CN.
+1.	Follow the **Step 1** and **Step 2** provided in the portal to supply your Package Name and Certificate Name (CN).
 
 	![Requesting WNS Credentials](images/requesting-wns-credentials.png?raw=true)
 
 	_Requesting WNS Credentials_
 
-	>**Note:**  It’s Important to ensure you have copied the publisher to the portal correctly as you will get a 403 unauthorized error when trying to send notifications if you have done this step incorrectly.
+	> **Note:**  Make sure you have copied the publisher to the portal correctly, otherwise, you will get a 403 unauthorized error when trying to send notifications.
 
 	![Credentials supplied for Auth against WNS](images/credentials-supplied-for-auth-against-wns.png?raw=true)
 
@@ -223,23 +225,25 @@ The application you deploy in this exercise requires both compute and storage se
 
 	>**Note:** Keep this browser open until the end of the lab as it can be used in subsequent steps.  If you prefer to close the browser, copy the three credentials to notepad for later use.
 
-1.	Open **Assets/Server/ServiceConfiguration.cscfg** and replace **[YOUR_WNS_PACKAGE_SID]** with the Package Security Identifier (SID)  and the **[YOUR_WNS_CLIENT_SECRET]** with the Client secret.
+1.	Open **ServiceConfiguration.cscfg** file from **Assets/Server** folder and replace _[YOUR_WNS_PACKAGE_SID]_ with the **Package Security Identifier (SID)**  and _[YOUR_WNS_CLIENT_SECRET]_ with the **Client secret**.
 
 	![Updating ServiceDefinition.cscfg with WNS Credentials](images/updating-servicedefinitioncscfg-with-wns-cred.png?raw=true)
 
 	_Updating ServiceDefinition.cscfg with WNS Credentials_
 
-	>**Note:** Ensure you have not copied white space on the start or end of the values in the **ServiceDefinition.cscfg** and that the **Package SID** and **Client Secret** were pasted into the correct fields.
+	> **Note:** Ensure you have not copied a white space on the start or end of the values in the **ServiceDefinition.cscfg** and that the **Package SID** and **Client Secret** were pasted into the correct fields.
 
-1.	Your Notification App Server is now ready to deploy to Windows Azure.   Note if your account is limited to one core.
+1.	Your Notification App Server is now ready to deploy to Windows Azure. Note if your account is limited to one core.
 
-	>**Note:** If your account is limited to one core only you can update the Instances element to set the count to 1 in the **ServiceDefinition.cscfg**.
+	>**Note:** If your account is limited to one core only you can update the Instances element to set the **count** to _1_ in the **ServiceDefinition.cscfg**.
 
 <a name="Ex1Task4" />
 #### Task 4 – Deploy your Notification App Server to Windows Azure ####
 
-1.	Return to the open Windows Azure Management Portal (https://windows.azure.com) and open the **Summary** page for  your hosted service that you created in the previous Exercise.
-1.	At the portal, select your hosted service that you created in the previous step and then click **New Production Deployment** on the ribbon. 
+In this task, you will deploy the Notification App Server ASP.NET MVC application to Windows Azure using the Windows Azure Management Portal.
+
+1.	Go back to the **Windows Azure Management Portal** (https://windows.azure.com) and select **Hosted Services** section from the left pane.
+1.	At the portal, select the hosted service you created in the previous step and then click **New Production Deployment** on the ribbon. 
 
 	>**Note:** A hosted service is a service that runs your code in the Windows Azure environment. It has two separate deployment slots: staging and production. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.  For this demo we will deploy straight to production.
 
@@ -251,13 +255,13 @@ The application you deploy in this exercise requires both compute and storage se
 
 	>**Note:** The _.cspkg_ file is an archive file that contains the binaries and files required to run a service - in this case it’s the Notification App Server ASP.NET MVC application. We used Visual Studio to create the service package for you using **Build | Publish** for the Windows Azure project.
 
-1.	Now, to choose the **Configuration File**, click **Browse Locally** and select **Assets/Server/ServiceConfiguration.cscfg** in the same **Assets/Server** folder that you used in the previous step.
+1.	Now, to choose the **Configuration File**, click **Browse Locally** and select **ServiceConfiguration.cscfg** file within **Assets/Server** folder.
 
-	>**Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for WNS and Windows Azure Storage that you performed in the previous exercise.
+	> **Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for **WNS** and Windows Azure Storage that you performed in the previous exercise.
 
-1.	Finally, for the **Deployment name**, enter a label to identify the deployment; for example, use **v1.0**.
+1.	Finally, for the **Deployment name**, enter a label to identify the deployment; for example, use _v1.0_.
 
-	>**Note:** The management portal displays the label in its user interface for staging and production, which allows you to identify the version currently deployed in each environment.
+	> **Note:** The management portal displays the label in its user interface for staging and production, which allows you to identify the version currently deployed in each environment.
 
 	![Configuring service package deployment](images/configuring-service-package-deployment.png?raw=true)
 
@@ -270,9 +274,9 @@ The application you deploy in this exercise requires both compute and storage se
 
 	_Uploading a service package to the Windows Azure Platform Management Portal_
 
-1.	The deployment will take several minutes to complete. While you wait for the deploy  process to finish as depicted in the diagram below you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
+1.	The deployment will take several minutes to complete. While you wait for the deploy process to finish as depicted in the diagram below you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
 
-	>**Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
+	> **Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
 
 	![Package successfully deployed](images/package-successfully-deployed.png?raw=true)
 
@@ -286,6 +290,8 @@ In this exercise, you will configure your client application to request a notifi
 <a name="Ex2Task1" />
 #### Task 1 – Configuring the package.appmanifest for Push Notifications ####
 
+In this task, you will update the package.appmanifest to receive Wide Tile notifications using Visual Studio 11 Express.
+
 1.	Return to your Windows Metro Style client application in **Visual Studio 11 Express**. 
 1.	In **Solution Explorer** double click **package.appmanifest**.
 
@@ -293,45 +299,46 @@ In this exercise, you will configure your client application to request a notifi
 
 	_Updating your client app with WNS credentials_
 
-1.	To enable your application to receive Wide Tile notifications Click **Browse** on Wide Logo, navigate to the **Assets/Client**  folder and select **widelogo.png**.
+1.	In order to enable your application to receive **Wide Tile** notifications, click **Browse** on Wide Logo and navigate to the **Assets/Client** folder. Then, select **widelogo.png** and click **Open**.
 
 	![Adding a wide logo to your application](images/adding-a-wide-logo-to-your-application.png?raw=true)
 
 	_Adding a wide logo to your application_
 
-1.	Press **Open**.
-1.	Scroll down and change the **Toast Capable** dropdown to be **Yes.**
+1.	Scroll down and change the **Toast Capable** dropdown to be _Yes_.
 
 	![Configuring your client application to allow Toast Notifications](images/configuring-your-client-application-to-allow.png?raw=true)
 
 	_Configuring your client application to allow Toast Notifications_
 
-1.	Select the **Packaging Tab** of package.appmanifest.
-1.	Update the Package Name to the Package name created during the prior task in the WNS and Live Connect Portal (https://manage.dev.live.com/build) as depicted in the following figure. 
+1.	Select the **Packaging Tab** of **package.appmanifest**.
+1.	Update the **Package Name** to the Package name created during the prior task in the **WNS & Live Connect Portal** (https://manage.dev.live.com/build) as depicted in the following figure. 
 
 	![Configuring your package.appmanifest package name](images/configuring-your-packageappmanifest-package-n.png?raw=true)
 
 	_Configuring your package.appmanifest package name_
 
-1.	**Close** and **Save** changes to package.appmanifest.
+1.	**Close** and **Save** changes to **package.appmanifest**.
 
 <a name="Ex2Task2" />
 #### Task 2 – Updating the Client Codebase for Notifications ####
 
+In this task, you will update your client application to be able to send push notifications using the Notification App Server.
+
 1.	In Solution Explorer **Right click** on the **js** folder and select add existing item.
-1.	Browse to the **Assets/Client**  folder and select **notifications.js** and press **Add**.
+1.	Browse to the **Assets/Client**  folder, select **notifications.js** and click **Add**.
 
 	![Add notifications.js to your client application](images/add-notificationsjs-to-your-client-applicatio.png?raw=true)
 
 	_Add notifications.js to your client application_
 
-1.	Open **notifications.js** and update **[YOUR_SUBDOMAIN]** in http:// **[YOUR_SUBDOMAIN]**.cloudapp.net/ChannelRegistrationService to use the dns prefix from the DNS Name in Windows Azure Management Portal (https://windows.azure.com) that you configured in the previous exercise a per the figure below:
+1.	Open **notifications.js** file and update _[YOUR_SUBDOMAIN]_ in http:// _[YOUR_SUBDOMAIN]_.cloudapp.net/ChannelRegistrationService to use the **DNS prefix** from the DNS Name in **Windows Azure Management Portal** (https://windows.azure.com) that you configured in the previous exercise a per the figure below:
 
 	![Set the DNS prefix of your hosted service](images/set-the-dns-prefix-of-your-hosted-service.png?raw=true)
 
 	_Set the DNS prefix of your hosted service_
 
-1.	Open **default.html** and **add** a script reference to **/js/notifications.js** and a statusMessage **div**.
+1.	Open **default.html** within the Solution Explorer and add a **script reference** to _/js/notifications.js_ and a **div** tag with id _statusMessage_.
 
 	<!-- mark:15,18 -->
 	````HTML
@@ -357,15 +364,15 @@ In this exercise, you will configure your client application to request a notifi
 	</html>
 	````
 
-1.	Open **default.js** and add a call to the **openNotificationsChannel();** of **notifications.js**.
+1.	Open **default.js** within **js** folder, and add a call to the **openNotificationsChannel();** of **notifications.js**.
 
 	![Adding a call to openNotificationsChannel() to ensure your channel is requested from WNS and Registered with your Notification App Server](images/adding-a-call-to-opennotificationschannel-to.png?raw=true)
 
 	_Adding a call to openNotificationsChannel() to ensure your channel is requested from WNS and Registered with your Notification App Server_
 
-1.	Press **File** then **Save All**.
-2.	Press **Build** then **Build Solution** to ensure your builds.
-3.	Spend some time reviewing the openNotificationsChannel() method of **notifications.js**.
+1.	Save all the changes from **File** | **Save All** (or by pressing **Ctrl + Shift + S**).
+1.	In the **Build** menu, click **Build Solution** to ensure your builds.
+1.	Open **notifications.js** and locate the **openNotificationsChannel()** method. This method will create a Push Notification Channel for the Notification App Server.
 
 <a name="Exercise3" />
 ### Exercise 3: Sending Push Notifications ###
@@ -375,7 +382,9 @@ This section describes how to run your client application and send notifications
 <a name="Ex3Task1" />
 #### Task 1 – Confirm your Hosted Service deployment to Windows Azure is complete ####
 
-1.	Navigate to your deployed hosted service http://**\<notificationsappserver\>.**cloudapp.net.
+In this task, you will verify that your application was correctly deployed to Windows Azure.
+
+1.	Navigate to your deployed hosted service http://**\<notificationsappserver\>**.cloudapp.net.
 
 	![Notification App Server portal running in Windows Azure](images/notification-app-server-portal-running-in-win.png?raw=true)
 
@@ -391,8 +400,10 @@ This section describes how to run your client application and send notifications
 <a name="Ex3Task2" />
 #### Task 2 – Running the Notification enabled Windows Metro Style App ####
 
-1.	Return to your Windows Metro Style App where you have configured notifications
-1.	Once the solution has opened press **F5**.  Due the configuration you made previously when the application launches it will call openNotificationsChannel();   This will request a channel from WNS and submit it to the Notifications App Server you deployed to Windows Azure.  In the statusMessage div, you will see that the Channel URI was sent successfully to your service.
+In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
+
+1.	Return to your Windows Metro Style App where you configured the notifications.
+1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel();** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
 
 	![Client output after successful channel request from WNS and registering with notification app server](images/client-output-after-successful-channel-reques.png?raw=true)
 
@@ -403,7 +414,7 @@ This section describes how to run your client application and send notifications
 
 Now that a channel has been successfully requested from WNS and registered with your Notification App Server we can now start to send notifications through the portal.
 
-1.	Switch to the Web browser and log into your deployed application (e.g: http://**[YOUR_SUBDOMAIN]**/.cloudapp.net), using the following credentials:
+1.	Switch to the Web browser and log into your deployed application (e.g: http://_[YOUR_SUBDOMAIN]_/.cloudapp.net), using the following credentials:
 	1. User Name: **admin**
 	1. Password: ![password](images/password.png?raw=true) (with a zero)
 
@@ -419,9 +430,9 @@ Now that a channel has been successfully requested from WNS and registered with 
 	
 	_Pushing Notifications_
 
-	>**Note:** If you re-register your channel from your client app while this page is open it is worthwhile refreshing the page to ensure that you have captured the latest channel uri.
+	> **Note:** If you re-register your channel from your client app while this page is open it is worthwhile refreshing the page to ensure that you have captured the latest channel uri.
 
-1.	You can now send your first toast notification to this channel. Click on the **Send Notification** button to open the notifications template dialog window.
+1.	You can now send your first _toast_ notification to this channel. Click **Send Notification** button to open the notifications template dialog window.
 1.	 Select **Toast** in the first drop-down list and then select the **ToastImageAndText01** template.
 1.	Configure the template column with your Square **WindowsAzureLogo.png** and type some text into **Regular text** as per below:
 
@@ -429,38 +440,38 @@ Now that a channel has been successfully requested from WNS and registered with 
 
 	_Selecting notification type and template_
 
-1.	Press **Send** and observe that the Web portal indicates that the message was successfully delivered to WNS and the Toast notification arrives to the Client application.
+1.	Click **Send** and observe that the Web portal indicates that the message was successfully delivered to **WNS** and the _Toast_ notification arrives to the Client application.
 
 	![Notification sent confirmation](images/notification-sent-confirmation.png?raw=true)
 
 	_Notification sent confirmation_
 
-	>**Note:**  If you are getting a 403 unauthorized or no notifications showing up please try refreshing the page to ensure that the channel that you are sending to is refreshed.  Following this please check that you created your WNS credentials with the correct CN from your package.appxmanifest and that you have configured your package.appxmanifest and ServiceConfiguration.cscfg correctly.
+	>**Note:**  If you are getting a 403 unauthorized or no notifications showing up please try refreshing the page to ensure that the channel that you are sending to is refreshed.  Following this, please check that you created your WNS credentials with the correct CN from your package.appxmanifest and that you have configured your package.appxmanifest and ServiceConfiguration.cscfg correctly.
 
-1.	Now that we have seen how to send a Toast we will send a Tile notification. Select **Tile** in the first drop-down and then select the **TileWideImageAndText01** template.
+1.	Now you will see how to send a _Tile_ notification. Select **Tile** in the first drop-down and then select the **TileWideImageAndText01** template.
 1.	Configure the template column with:
 	1.	Your wide logo **WindowsAzureLogoWide.png**.
 	1.	Custom text to be displayed in **Large Text** and **Regular Text**.
-	1.	Press **Send**.
+	1.	Click **Send**.
 
 		![Pushing a Tile notification](images/pushing-a-tile-notification.png?raw=true)
 
 		_Pushing a Tile notification_
 
-1.	Return to Start by **pressing** the Windows key ( ![start](images/start.png?raw=true)) and observe that your Tile notification has now been delivered and is being displayed.
+1.	Return to **Start** by pressing the **Windows key** ( ![start](images/start.png?raw=true)) and observe that your _Tile_ notification has now been delivered and is being displayed.
 
 	![Delivered Tile notification](images/delivered-tile-notification.png?raw=true)
 	
 	_Delivered Tile notification_
 
-1.	Now that we have seen how to send a Tile we will send a Badge notification. Select **Badge** in the first drop-down list and then select the **Glyph** template.
-1.	In the template column select the **NewMessage** option and press **Send**.
+1.	Now you will see how to send a _Badge_ notification. Select **Badge** in the first drop-down list and then select the **Glyph** template.
+1.	In the template column select the **NewMessage** option and click **Send**.
 
 	![Pushing a Badge notification](images/pushing-a-badge-notification.png?raw=true)
 
 	_Pushing a Badge notification_
 
-1.	Return to Start by **pressing** the Windows key ( ![start](images/start.png?raw=true)) and observe that your Tile has now the Badge updated to see the NewMessage Glyph type:
+1.	Return to **Start** by pressing the **Windows key** ( ![start](images/start.png?raw=true)) and observe that your _Tile_ has now the _Badge_ updated to see the NewMessage Glyph type:
 
 	![Updated Tile notification with a Badge](images/updated-tile-notification-with-a-badge.png?raw=true)
 
@@ -481,4 +492,3 @@ By completing this Hands-On Lab you have learned how to:
 -	Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
 If you would like the full codebase for the **Notification App Server** to update for your own applications please download the **Windows Azure Training Kit for Windows 8** (http://watwindows8.codeplex.com).
-If you have any feedback on this lab please contact [watwindows8@microsoft.com](mailto:watwindows8@microsoft.com).

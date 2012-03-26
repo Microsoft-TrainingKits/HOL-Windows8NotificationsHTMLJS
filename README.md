@@ -1,4 +1,4 @@
-# Sending Push Notifications using Windows Azure and the Windows Push Notification Service #
+# Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service #
 
 ## Hands-on Lab ##
 

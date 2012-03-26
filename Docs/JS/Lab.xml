@@ -6,7 +6,7 @@
   </Author>
   <Description>In this hands-on lab, you will learn how to deploy a pre-packaged version of the Windows Azure Toolkit for Windows 8 to Windows Azure and then utilize this deployment to send notifications to your client application via the Windows Push Notification Service (WNS).</Description>  
   <Document ConversionType="Html">.\HOL.md</Document>
-  <Title>Sending Push Notifications using Windows Azure and the Windows Push Notification Service</Title>
+  <Title>Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service</Title>
   <Version>1.0.0</Version>
   <Source>..\Source</Source>
   <DependencyChecker>..\Source\JS\Setup\Dependencies.depi</DependencyChecker>
