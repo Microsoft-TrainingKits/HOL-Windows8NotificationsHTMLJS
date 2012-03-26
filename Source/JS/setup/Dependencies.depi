@@ -2,7 +2,7 @@
 <DependencyCheckerConfiguration version="2.0">
 	<title>Sending Push Notifications using Windows Azure and the Windows Push Notification Service</title>
 	<dependencies>
-       <dependency 
+		<dependency 
              hint="Microsoft Visual Studio 11 Beta" 
              name="Microsoft Visual Studio 11 Beta" 
              description="Microsoft Visual Studio 11 Beta" 
