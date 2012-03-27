@@ -17,7 +17,7 @@ If you would like to learn more about how this lab works please see [this video]
 
 In this hands-on lab, you will learn how to:
 
--	Use the Windows Azure Platform Management Portal to create storage accounts and hosted service components.
+-	Use the Windows Azure platform Management Portal to create storage accounts and hosted service components.
 -	Use the Windows Push Notification and Live Connect Portal to request credentials for use with WNS.
 -	Deploy service component packages using the Windows Azure Platform Management Portal user interface.
 -	Configure a Windows Metro Style client to receive notifications
@@ -32,7 +32,7 @@ You must have the following items to complete this lab:
 -	[Visual Studio 11 Express Beta for Windows 8][2] or greater.
 -	A Windows Azure subscription
 	- If you are attending a Lab please ask you Lab Proctor if they are supplying Windows Azure account keys and then activate your account using http://windowsazurepass.com, otherwise please use the free trial method below. 
-	- Or, please register for a 90 day no obligation [Free Windows Azure Trial][4]. 
+	- Or, please register for a 90 day no obligation [Free Windows Azure Trial][3]. 
 
 [1]:http://windows.microsoft.com/en-US/windows-8/download
 [2]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
@@ -200,7 +200,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	>**Note:**  If you do not have an existing client application for step 1 in Visual Studio 11 Beta for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Visual C#** and then **Blank Application**. Press **OK**.
 
-1.	In solution explorer open your **package.appxmanifest** and select the **packaging tab**.  We will use the **Package Display Name** and **Publisher** fields for creating your WNS Credentials.
+1.	In solution explorer open your **package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** and **Publisher** fields for creating your WNS Credentials.
 
 	![Opening package.appxmanifest](images/opening-packageappxmanifestcsharp.png?raw=true "Opening package.appxmanifest")
 
@@ -276,7 +276,7 @@ In this task, you will deploy the Notification App Server ASP.NET MVC applicatio
 
 	_Uploading a service package to the Windows Azure Platform Management Portal_
 
-1.	The deployment will take several minutes to complete. While you wait for the deploy  process to finish as depicted in the diagram below you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
+1.	While you wait for the deploy process to finish, as depicted in the diagram below, you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
 
 	>**Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
 
