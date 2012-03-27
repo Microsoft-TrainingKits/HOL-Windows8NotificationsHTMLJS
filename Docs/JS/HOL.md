@@ -17,9 +17,9 @@ If you would like to learn more about how this lab works please see [this video]
 
 In this hands-on lab, you will learn how to:
 
--	Use the Windows Azure Platform Management Portal to create storage accounts and hosted service components.
+-	Use the Windows Azure Management Portal to create storage accounts and hosted service components.
 -	Use the Windows Push Notification and Live Connect Portal to request credentials for use with WNS.
--	Deploy service component packages using the Windows Azure Platform Management Portal user interface.
+-	Deploy service component packages using the Windows Azure Management Portal user interface.
 -	Configure a Windows Metro Style client to receive notifications
 Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
@@ -32,7 +32,7 @@ You must have the following items to complete this lab:
 -	[Visual Studio 11 Express Beta for Windows 8][2] or greater.
 -	A Windows Azure subscription
 	- If you are attending a Lab please ask you Lab Proctor if they are supplying Windows Azure account keys and then activate your account using http://windowsazurepass.com, otherwise please use the free trial method below. 
-	- Or, please register for a 90 day no obligation [Free Windows Azure Trial][4]. 
+	- Or, please register for a 90 day no obligation [Free Windows Azure Trial][3]. 
 
 [1]:http://windows.microsoft.com/en-US/windows-8/download
 [2]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
@@ -56,16 +56,16 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1.	[Deploying an Application Using the Windows Azure Platform Management Portal](#Exercise1)
+1.	[Deploying an Application Using the Windows Azure Management Portal](#Exercise1)
 1.	[Configure a Windows Metro Style Client application for Push Notifications](#Exercise2)
 1.	[Sending Push Notifications](#Exercise2)
 
 Estimated time to complete this lab: **45 minutes**.
 
 <a name="Exercise1" />
-### Exercise 1: Deploying an Application Using the Windows Azure Platform Management Portal ###
+### Exercise 1: Deploying an Application Using the Windows Azure Management Portal ###
 
-In this exercise, you deploy the notification app server to Windows Azure using the Windows Azure Platform Management Portal. To do this, you provision the required service components at the management portal, request credentials from the WNS and Live Connect portal, configure and upload the package to Windows Azure.   
+In this exercise, you deploy the notification app server to Windows Azure using the Windows Azure Management Portal. To do this, you provision the required service components at the management portal, request credentials from the WNS and Live Connect portal, configure and upload the package to Windows Azure.   
 
 <a name="Ex1Task1" />
 #### Task 1 – Creating a Storage Account and a Hosted Service Component ####
@@ -78,9 +78,9 @@ The application you deploy in this exercise requires both compute and storage se
     
 1.	Navigate to http://windows.azure.com and sign in using the Windows Live ID associated with your Windows Azure account.
 
-	![Signing in to the Windows Azure Platform Management portal](images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
+	![Signing in to the Windows Azure Management portal](images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
 
-	_Signing in to the Windows Azure Platform Management portal_
+	_Signing in to the Windows Azure Management portal_
 
 1.	First, you create the storage account that the application will use to store its data. In the Windows Azure ribbon, click **New Storage Account**.
  
@@ -198,7 +198,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 11 Beta for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
 
-1.	In solution explorer open your **package.appxmanifest** and select the **packaging tab**.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
+1.	In solution explorer open your **package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
 
 	![Opening package.appxmanifest](images/opening-packageappxmanifest.png?raw=true)
 
@@ -270,11 +270,11 @@ In this task, you will deploy the Notification App Server ASP.NET MVC applicatio
 1.	Click **OK** to start the deployment. 
 1.	Click **Yes** to override and submit the deployment request. Notice that the package begins to upload and that the portal shows the status of the deployment to indicate its progress.
 
-	![Uploading a service package to the Windows Azure Platform Management Portal](images/uploading-a-service-package-to-the-windows-az.png?raw=true)
+	![Uploading a service package to the Windows Azure Management Portal](images/uploading-a-service-package-to-the-windows-az.png?raw=true)
 
-	_Uploading a service package to the Windows Azure Platform Management Portal_
+	_Uploading a service package to the Windows Azure Management Portal_
 
-1.	The deployment will take several minutes to complete. While you wait for the deploy process to finish as depicted in the diagram below you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
+1.	The deployment will take several minutes to complete. While you wait for the deploy process to finish, as depicted in the diagram below, you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
 
 	> **Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
 
@@ -311,7 +311,7 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 
 	_Configuring your client application to allow Toast Notifications_
 
-1.	Select the **Packaging Tab** of **package.appmanifest**.
+1.	Select the **Packaging** tab of **package.appmanifest**.
 1.	Update the **Package Name** to the Package name created during the prior task in the **WNS & Live Connect Portal** (https://manage.dev.live.com/build) as depicted in the following figure. 
 
 	![Configuring your package.appmanifest package name](images/configuring-your-packageappmanifest-package-n.png?raw=true)
@@ -364,7 +364,7 @@ In this task, you will update your client application to be able to send push no
 	</html>
 	````
 
-1.	Open **default.js** within **js** folder, and add a call to the **openNotificationsChannel();** of **notifications.js**.
+1.	Open **default.js** within **js** folder, and add a call to the **openNotificationsChannel()** of **notifications.js**.
 
 	![Adding a call to openNotificationsChannel() to ensure your channel is requested from WNS and Registered with your Notification App Server](images/adding-a-call-to-opennotificationschannel-to.png?raw=true)
 
@@ -403,7 +403,7 @@ In this task, you will verify that your application was correctly deployed to Wi
 In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
 
 1.	Return to your Windows Metro Style App where you configured the notifications.
-1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel();** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
+1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel()** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
 
 	![Client output after successful channel request from WNS and registering with notification app server](images/client-output-after-successful-channel-reques.png?raw=true)
 
@@ -485,9 +485,9 @@ Now that a channel has been successfully requested from WNS and registered with 
 ## Summary ##
 By completing this Hands-On Lab you have learned how to:
 
--	 Use the Windows Azure Platform Management Portal to create storage accounts and hosted service components.
+-	 Use the Windows Azure Management Portal to create storage accounts and hosted service components.
 -	Use the WNS and Live Connect Portal to request credentials for use with WNS.
--	Deploy service component packages using the Windows Azure Platform Management Portal user interface.
+-	Deploy service component packages using the Windows Azure Management Portal user interface.
 -	Configure a Windows Metro Style client to receive notifications.
 -	Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
