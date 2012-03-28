@@ -3,7 +3,7 @@ setlocal
 CD /d "%~dp0"
 
 ::Test If script has Admin Priviledges/is elevated
-AT > NUL
+REG QUERY "HKUS-1-5-19"
 IF %ERRORLEVEL% NEQ 0 (
     ECHO Please run this script as an administrator
     pause
