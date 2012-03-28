@@ -8,7 +8,7 @@ Hands-On Labs are sets of step-by-step guides that are designed to help you lear
 
 In this hands-on lab, you will learn how to deploy a pre-packaged version of the Windows Azure Toolkit for Windows 8 to Windows Azure and then utilize this deployment to send notifications to your client application via the Windows Push Notification Service (WNS).
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://www.microsoft.com/download/en/details.aspx?id=8396.
+> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 
