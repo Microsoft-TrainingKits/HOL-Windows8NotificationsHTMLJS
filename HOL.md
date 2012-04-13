@@ -10,7 +10,7 @@ In this hands-on lab, you will learn how to deploy a pre-packaged version of the
 
 _Windows Azure Toolkit for Windows 8 delivering a notification via WNS_
 
-If you would like to learn more about how this lab works please see [this video](http://channel9.msdn.com/Events/TechDays/Techdays-2012-the-Netherlands/2294).
+If you would like to learn more about how this lab works please see [this video](http://channel9.msdn.com/Events/TechDays/TechDays-2012-Belgium/272).
 
 <a name="Objectives" />
 ### Objectives ###
