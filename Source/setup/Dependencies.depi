@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DependencyCheckerConfiguration version="2.0">
-	<title>Sending Push Notifications using Windows Azure and the Windows Push Notification Service</title>
+	<title>Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service (JS)</title>
 	<dependencies>
 		<dependency
-		  hint="Microsoft Visual Studio 11 (?:Ultimate Beta|Premium Beta|Professional Beta|Express Beta for Windows 8).*;11.0"
-		  name="Microsoft Visual Studio 11"
-		  description="Microsoft Visual Studio 11 Ultimate Beta, Microsoft Visual Studio 11 Premium Beta, Microsoft Visual Studio 11 Professional Beta or Microsoft Visual Studio 11 Express Beta for Windows 8"
-		  helpLink="http://go.microsoft.com/fwlink/?LinkId=237306"
+		  hint="Microsoft Visual Studio (?:Ultimate 2012 RC|Premium 2012 RC|Professional 2012 RC|Express for Windows 8).*;11.0"
+		  name="Microsoft Visual Studio 2012"
+		  description="Microsoft Visual Studio Ultimate 2012, Microsoft Visual Studio Premium 2012, Microsoft Visual Studio Professional 2012 or Microsoft Visual Studio Express 2012 for Windows 8"
+		  helpLink="http://www.microsoft.com/visualstudio/11/en-us"
 		  disableSkip="true"
 		  type="Uninstall" />		
     </dependencies>

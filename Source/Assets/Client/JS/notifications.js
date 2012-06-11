@@ -4,10 +4,11 @@
 //
 
 var channel;
-var serverUrl = "http://[YOUR_SUBDOMAIN].cloudapp.net/ChannelRegistrationService";
+var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";
 var appId = "MyApp1";
 var deviceId = "MyDevice1";
 var userId = "UserId1";
+var tileId = "MyTile";
 
 function openNotificationsChannel() {
     var pushNotifications = Windows.Networking.PushNotifications;
@@ -32,7 +33,9 @@ function updateChannelUri(channel, channelExpiration, callNumber) {
             ChannelUri: channel,
             Expiry: channelExpiration.toString(),
             DeviceId: deviceId,
-            UserId: userId, 
+            UserId: userId,
+            TileId: tileId,
+            ClientId: deviceId 
         };
 
         UpdateStatusMessage("2. Attempting to registering channel URI with Notification App Server at " + serverUrl);

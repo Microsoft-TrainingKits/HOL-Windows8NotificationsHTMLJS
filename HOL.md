@@ -1,10 +1,10 @@
 ﻿<a name="HOLTop" />
-# Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service #
+# Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service (JS) #
 ---
 
 <a name="Overview" />
 ## Overview ##
-In this hands-on lab, you will learn how to deploy a pre-packaged version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then utilize this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows Metro Style client application.
+In this hands-on lab, you will learn how to deploy a version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then utilize this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows Metro Style client application.
 
 ![Windows Azure Toolkit for Windows 8 delivering a notification via WNS](images/windows-azure-toolkit-for-windows-8-deliverin.png?raw=true)
 
@@ -17,26 +17,23 @@ If you would like to learn more about how this lab works please see [this video]
 
 In this hands-on lab, you will learn how to:
 
--	Use the Windows Azure Management Portal to create storage accounts and hosted service components.
--	Use the Windows Push Notification and Live Connect Portal to request credentials for use with WNS.
--	Deploy service component packages using the Windows Azure Management Portal user interface.
--	Configure a Windows Metro Style client to receive notifications
-Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
+- Use the Windows Azure Management Portal to create storage accounts and hosted service components.
+- Use the Windows Push Notification and Live Connect Portal to request credentials for use with WNS.
+- Deploy web site using Web Deploy.
+- Configure a Windows Metro Style client to receive notifications
+- Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
-<a name="SystemRequirements" />
-### System Requirements ###
+<a name="Prerequisites" />
+### Prerequisites ###
 
 You must have the following items to complete this lab:
 
--	[Windows 8 Consumer Preview][1].
--	[Visual Studio 11 Express Beta for Windows 8][2] or greater.
--	A Windows Azure subscription
-	- If you are attending a Lab please ask you Lab Proctor if they are supplying Windows Azure account keys and then activate your account using http://windowsazurepass.com, otherwise please use the free trial method below. 
-	- Or, please register for a 90 day no obligation [Free Windows Azure Trial][3]. 
+- [Visual Studio 2012 Express for Windows 8][1] or greater.
+- A Windows Azure subscription with the Web Sites Preview enabled - you can sign up for free trial [here](http://bit.ly/WindowsAzureFreeTrial)
 
-[1]:http://windows.microsoft.com/en-US/windows-8/download
-[2]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
-[3]:http://www.microsoft.com/windowsazure/free-trial
+[1]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
+
+>**Note:** This lab was designed to use Windows 8 Operating System.
 
 <a name="Setup" />
 ### Setup ###
@@ -44,7 +41,7 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 1. Open a Windows Explorer window and browse to the lab’s **source** folder.
 
-1. Double-click the **Setup.cmd** file in this folder to launch the setup process that will configure your environment.
+1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
 
 1. If the User Account Control dialog is shown, confirm the action to proceed.
 
@@ -56,147 +53,109 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1.	[Deploying an Application Using the Windows Azure Management Portal](#Exercise1)
-1.	[Configure a Windows Metro Style Client application for Push Notifications](#Exercise2)
-1.	[Sending Push Notifications](#Exercise2)
+*	[Getting Started: Deploying the Notification App Server Using Web Deploy](#GettingStarted)
+*	[Exercise 1: Configure a Windows Metro Style Client application for Push Notifications](#Exercise1)
+*	[Exercise 2: Sending Push Notifications](#Exercise2)
 
 Estimated time to complete this lab: **45 minutes**.
 
-<a name="Exercise1" />
-### Exercise 1: Deploying an Application Using the Windows Azure Management Portal ###
+<a name="GettingStarted" />
+### Getting Started: Deploying the Notification App Server Using Web Deploy###
 
-In this exercise, you deploy the notification app server to Windows Azure using the Windows Azure Management Portal. To do this, you provision the required service components at the management portal, request credentials from the WNS and Live Connect portal, configure and upload the package to Windows Azure.   
+In this exercise, you deploy the notification app server to Windows Azure using Web Deploy. To do this, you provision the required service components at the management portal, request credentials from the WNS and Live Connect portal and deploy to Windows Azure using Web Deploy.   
 
-<a name="Ex1Task1" />
-#### Task 1 – Creating a Storage Account and a Hosted Service Component ####
+<a name="GSTask1" />
+#### Task 1 – Creating a Storage Account and Web Site ####
 
-The application you deploy in this exercise requires both compute and storage services. In this task, you create a new Windows Azure storage account to allow the application to persist its data. In addition, you define a hosted service component to execute application code.
+The application you deploy in this exercise requires a Web Site and a Storage Account. In this task, you create a new storage account to allow the application to persist its data. In addition, you define a Web Site to host the notification app server.
 
-1.	This step is only required if you do not already have a Windows Azure account.
-	1.	If you are attending a Lab please ask you Lab Proctor if they are supplying Windows Azure account keys and then activate your account using http://windowsazurepass.com otherwise please use the free trial method below. 
-	1. Or, please register for a 90 day no obligation [Free Windows Azure Trial](http://www.microsoft.com/windowsazure/free-trial).
-    
-1.	Navigate to http://windows.azure.com and sign in using the Windows Live ID associated with your Windows Azure account.
+1. Navigate to [<https://manage.windowsazure.com>](<https://manage.windowsazure.com>) using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
 
-	![Signing in to the Windows Azure Management portal](images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
 
-	_Signing in to the Windows Azure Management portal_
+	![Signing in to the Windows Azure platform Management portal](images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
 
-1.	First, you create the storage account that the application will use to store its data. In the Windows Azure ribbon, click **New Storage Account**.
+	_Signing in to the Windows Azure platform Management portal_
+
+
+1. First, you will create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Storage Account** | **Quick Create**.
+
+1. Set a unique **URL**, for example _myNotificationAppServer_, and click the **Tick** to continue.
  
 	![Creating a new storage account](images/creating-a-new-storage-account.png?raw=true)
 
 	_Creating a new storage account_
 
-1.	In the **Create a New Storage Account** dialog, pick your subscription in the drop down list labeled **Choose a subscription**.
-
-	![Choosing a subscription to host the storage account](images/choosing-a-subscription-to-host-the-storage-a.png?raw=true)
-
-	_Choosing a subscription to host the storage account_
-
-1.	In the textbox labeled **Enter a URL**, enter the name for your storage account, for example, **\<NotificationAppServer\>**, where _\<NotificationAppServer\>_ is a unique name. Windows Azure uses this value to generate the endpoint URLs for the storage account services.
-
-	![Choosing the URL of the new storage account](images/choosing-the-url-of-the-new-storage-account.png?raw=true)
-
-	> **Note:**  The name used for the storage account corresponds to a DNS name and is subject to standard DNS naming rules. Moreover, the name is publicly visible and must therefore be unique. The portal ensures that the name is valid by verifying that the name complies with the naming rules and is currently available. A validation error will be shown if you enter a name that does not satisfy the rules.
+	> **Note:** The URL used for the storage account corresponds to a DNS name and is subject to standard DNS naming rules. Moreover, the name is publicly visible and must therefore be unique. The portal ensures that the name is valid by verifying that the name complies with the naming rules and is currently available. A validation error will be shown if you enter a name that does not satisfy the rules.
+	>
 	> ![URL Validation](images/url-validation.png?raw=true)
 
-1.	Select the option labeled **Create or choose an affinity group** and then pick **Create a new affinity group** from the drop down list.
+1. Wait until the Storage Account is created. Click your storage account's name to go to its **Dashboard**.
 
-	![Creating a new affinity group](images/creating-a-new-affinity-group.png?raw=true)
+	![Storage Accounts page](images/storage-accounts-page.png?raw=true "Storage Accounts page")
 
-	_Creating a new affinity group_
+	_Storage Accounts page_
 
-	>**Note:** The reason that you are creating a new affinity group is to deploy both the hosted service and storage account to the same location, thus ensuring high bandwidth and low latency between the application and the data it depends on.
+1.	In the **Dashboard** page, you will see the **URL** assigned to each service in the storage account. Record the public storage account name, this is the first segment of the URL assigned to your endpoints.
 
-1.	In the **Create a New Affinity Group** dialog, enter an **Affinity Group Name**, select its **Location** in the drop down list, and then click **OK**.
+	![Storage Account Dashboard page](images/storage-account-dashboard-page.png?raw=true "Storage Account Dashboard page")
 
-	![Configuring a new affinity group](images/configuring-a-new-affinity-group.png?raw=true)
+	_Storage Account Dashboard page_
 
-	_Configuring a new affinity group_
+1.	Click **Manage Keys** at the bottom of the page in order to show the storage account's access keys.
 
-1.	Back in the **Create a New Storage Account** dialog, click **Create** to register your new storage account. Wait until the account provisioning process completes and updates the **Storage Accounts** tree view. Notice that the **Properties** pane shows the **URL** assigned to each service in the storage account. Record the public storage account name, this is the first segment of the URL assigned to your endpoints.
+1. Copy the **Primary access key** value. You will use this value later on to configure the application.
 
-	![Storage account successfully created](images/storage-account-successfully-created.png?raw=true)
+	![Manage Storage Account Keys](images/manage-storage-account-keys.png?raw=true "Manage Storage Account Keys")
 
-	_Storage account successfully created_
+	_Manage Storage Account Keys_
 
-1.	Now, click the **View** button next to **Primary access key** in the **Properties** pane. In the **View Storage Access Keys** dialog, click **Copy to Clipboard** next to the **Primary Access Key**. You will use this value later on to configure the application.
-
-	![Retrieving the storage access keys](images/retrieving-the-storage-access-keys.png?raw=true)
-
-	_Retrieving the storage access keys_
 
 	>**Note:** The **Primary Access Key** and **Secondary** Access **Key** both provide a shared secret that you can use to access storage. The secondary key gives the same access as the primary key and is used for backup purposes. You can regenerate each key independently in case either one is compromised.
 
-1. Next, create the compute component that executes the application code. Click **Hosted Services** on the left pane. Click on **New Hosted Service** button on the ribbon.
+1. Go back to the portal home page, and select **Web Sites**.
 
-	![Creating a new hosted service](images/creating-a-new-hosted-service.png?raw=true)
+1. Select **New**, then select **Web Site** from the list and then **Quick Create**.
 
-	_Creating a new hosted service_
+1. Choose a name for your Web Site and then select **Create Web Site**
 
-1.	In the **Create a new Hosted Service** dialog, select the subscription where you wish to create the service from the drop down list labeled **Choose a subscription**.
+	![Creating a new Web Site](images/creating-a-new-web-site.png?raw=true)
+	
+	_Creating a new Web Site_
 
-	![Choosing your subscription](images/choosing-your-subscription.png?raw=true)
 
-	_Choosing your subscription_
+<a name="GSTask2" />
+#### Task 2 – Updating the application with your Storage Account Name and Key ####
+In this task, you will update the Connection String values within the web configuration file using the Storage Account you created in the previous task.
 
-1.	Enter a service name in the textbox labeled **Enter a name for your service** and choose its URL  by entering a prefix in the textbox labeled  **Enter a URL prefix for your service**, for example, **\<notificationappserver\>**, where _\<notificationappserver\>_ is a unique name. Windows Azure uses this value to generate the endpoint URLs for the hosted service.
+1. In a new instance of **Visual Studio 2012**, open **Services.sln** located in the **Assets** folder.  This is the Notification App Server.
 
-	![Configuring the hosted service URL and affinity group](images/configuring-the-hosted-service-url-and-affini.png?raw=true)
+1. Open **Web.config**.  In the **appsettings** section, replace the value of the **DataConnectionString** setting using the recommended format as shown in the commented lines in the snippet below.
 
-	_Configuring the hosted service URL and affinity group_
+	````XML
+	<!--
+		  When deploying to Windows Azure, replace the DataConnectionString setting with the
+		  connection string for your Windows Azure Storage account. For example:
+		  "DefaultEndpointsProtocol=https;AccountName={your storage account name};AccountKey={your storage account key}"
+		  -->
+		<add key="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName={your storage account};AccountKey={your storage account key}"/
 
-	>**Note:** If possible, choose the same name for both the storage account and hosted service. However, you may need to choose a different name if the one you select is unavailable.
-	>
-	>The portal ensures that the name is valid by verifying that the name complies with the naming rules and is currently available. A validation error will be shown if you enter name that does not satisfy the rules.
-	>
-	>![URL prefix validation](images/url-prefix-validation.png?raw=true)
 
-1.	Select the option labeled **Create or choose an affinity group** and then pick the affinity group you defined when you created the storage account from the drop down list.
+	````
+1. Save your changes.
 
-	![Choosing an affinity group](images/choosing-an-affinity-group.png?raw=true)
+1. Open the **Package Manager Console**, and in the Package Sources window add the subfolders located in the **Assets/Server/Nugets** folder as new sources.
 
-	> **Note:** By choosing this affinity group, you ensure that the hosted service is deployed to the same data center as the storage account that you provisioned earlier.
+1. Change the Package source in the Package Manager Console to **All**.
 
-1.	Select the option labeled **Deploy not Deploy**.
+1. Build the solution.
 
-	> **Note:** While you can create and deploy your service to Windows Azure in a single operation by completing the **Deployment Options** section, for this hands-on lab, you will defer the deployment step until we have finished the configuration.
+<a name="GSTask3" />
+#### Task 3 – Requesting WNS Credentials and updating the Web.config ####
+In this task, you will obtain the Windows Push Notification Services (WNS) credentials and use them to update the Web Configuration file.
 
-1.	Click **OK** to create the hosted service and then wait until the provisioning process completes.
+1.	To request **WNS** credentials you will require your publisher credentials for your metro style app.  In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Metro Style application or create a new application. 
 
-	![Hosted service successfully created](images/hosted-service-successfully-created.png?raw=true)
-
-	_Hosted service successfully created_
-
-1.	Do not close the browser window. You will use the portal for the next task.
-
-<a name="Ex1Task2" />
-#### Task 2 – Updating the ServiceConfiguration.cscfg with your Storage Account Name and Key ####
-In this task, you will update the Connection String values within the ServiceConfiguration file using the Storage Account you created in the previous task.
-
-1.	Next, open **Assets/Server/ServiceConfiguration.cscfg**. 
-
-	![Configuring the storage account connection strings](images/configuring-the-storage-account-connection-st.png?raw=true)
-
-	_Configuring the storage account connection strings_
-
-1.	Replace the placeholder labeled _[YOUR_ACCOUNT_NAME]_ with the Windows Azure Storage **Account Name** that you created earlier.
-1.	Replace the placeholder labeled _[YOUR_ACCOUNT_KEY]_ with the Windows Azure Storage account **Primary Access Key** value that you created earlier, when you created the storage account in **Task 1**. Again, replace both instances of the placeholder, one for each connection string.
-
-	![Setting the storage account connection strings](images/setting-the-storage-account-connection-string.png?raw=true)
-
-	_Setting the storage account connection strings_
-
-	>**Note:** The connection string text has been wrapped for the purposes of this screenshot only.  Leave as one line in your real config.
-
-<a name="Ex1Task3" />
-#### Task 3 – Requesting WNS Credentials and updating the ServiceConfiguration.cscfg ####
-In this task, you will obtain the Windows Push Notification Services (WNS) credentials and use them to update the ServiceConfiguration file.
-
-1.	To request **WNS** credentials you will require your publisher credentials for your metro style app.  Launch **Visual Studio 11 Beta** and open your existing HTML5/JS Metro Style application or create a new application. 
-
-	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 11 Beta for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
+	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
 
 1.	In solution explorer open your **package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
 
@@ -210,7 +169,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	_Login to request WNS credentials_
 
-1.	Sign in using your **Windows Live ID**.
+1.	Sign in using your **Microsoft Account**.
 1.	Follow the **Step 1** and **Step 2** provided in the portal to supply your Package Name and Certificate Name (CN).
 
 	![Requesting WNS Credentials](images/requesting-wns-credentials.png?raw=true)
@@ -225,74 +184,79 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	>**Note:** Keep this browser open until the end of the lab as it can be used in subsequent steps.  If you prefer to close the browser, copy the three credentials to notepad for later use.
 
-1.	Open **ServiceConfiguration.cscfg** file from **Assets/Server** folder and replace _[YOUR_WNS_PACKAGE_SID]_ with the **Package Security Identifier (SID)**  and _[YOUR_WNS_CLIENT_SECRET]_ with the **Client secret**.
+1.	Switch to the Notification App Server, open **Web.config** file and replace _[YOUR_WNS_PACKAGE_SID]_ with the **Package Security Identifier (SID)**  and _[YOUR_WNS_CLIENT_SECRET]_ with the **Client secret**.
 
-	![Updating ServiceDefinition.cscfg with WNS Credentials](images/updating-servicedefinitioncscfg-with-wns-cred.png?raw=true)
+	![Updating Web.config with WNS Credentials](images/updating-webconfig-with-wns-cred.png?raw=true)
 
-	_Updating ServiceDefinition.cscfg with WNS Credentials_
+	_Updating Web.config with WNS Credentials_
 
-	> **Note:** Ensure you have not copied a white space on the start or end of the values in the **ServiceDefinition.cscfg** and that the **Package SID** and **Client Secret** were pasted into the correct fields.
+	> **Note:** Ensure you have not copied a white space on the start or end of the values in the **Web.config** and that the **Package SID** and **Client Secret** were pasted into the correct fields.
 
 1.	Your Notification App Server is now ready to deploy to Windows Azure. Note if your account is limited to one core.
 
-	>**Note:** If your account is limited to one core only you can update the Instances element to set the **count** to _1_ in the **ServiceDefinition.cscfg**.
 
-<a name="Ex1Task4" />
-#### Task 4 – Deploy your Notification App Server to Windows Azure ####
+<a name="GSTask4" />
+#### Task 4 – Deploy your Notification App Server to Windows Azure using Web Deploy####
 
-In this task, you will deploy the Notification App Server ASP.NET MVC application to Windows Azure using the Windows Azure Management Portal.
+In this task, you will deploy the Notification App Server to Windows Azure using Web Deploy.
 
-1.	Go back to the **Windows Azure Management Portal** (https://windows.azure.com) and select **Hosted Services** section from the left pane.
-1.	At the portal, select the hosted service you created in the previous step and then click **New Production Deployment** on the ribbon. 
+1. In the Windows Azure Portal, select **Web Sites**, and then select your Web Site to open the **Dashboard**.  In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link and save the file to a known location. You will use theses settings later to publish the web site from Visual Studio 2012.
 
-	>**Note:** A hosted service is a service that runs your code in the Windows Azure environment. It has two separate deployment slots: staging and production. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.  For this demo we will deploy straight to production.
+	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate the publishing configuration for web applications to Windows Azure Web Sites.
 
-	![Hosted service summary page](images/hosted-service-summary-page.png?raw=true)
+	![Downloading the publish profile](images/download-publish-profile.png?raw=true "Downloading the publish profile")
 
-	_Hosted service summary page_
+	_Downloading the publish profile_
 
-1.	In the **Create a new Deployment** dialog click **Browse Locally** to select a **Package location** and navigate to the **Assets/Server** folder where you performed the configuration in the prior task and then select **WindowsAzureAppServer.cspkg**.
 
-	>**Note:** The _.cspkg_ file is an archive file that contains the binaries and files required to run a service - in this case it’s the Notification App Server ASP.NET MVC application. We used Visual Studio to create the service package for you using **Build | Publish** for the Windows Azure project.
+1. In Visual Studio's Solution Explorer, right-click the **Notification App Server** project node and select **Publish** to open the Publish Web wizard.
 
-1.	Now, to choose the **Configuration File**, click **Browse Locally** and select **ServiceConfiguration.cscfg** file within **Assets/Server** folder.
+	![Publishing the service](images/publishing-the-service.png?raw=true "Publishing the service")
 
-	> **Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for **WNS** and Windows Azure Storage that you performed in the previous exercise.
+	_Publishing the service_
 
-1.	Finally, for the **Deployment name**, enter a label to identify the deployment; for example, use _v1.0_.
+1. In the **Profile** page, click the **Import** button and select your publishing profile file. Click **Next**.
 
-	> **Note:** The management portal displays the label in its user interface for staging and production, which allows you to identify the version currently deployed in each environment.
+	![Publising profile profile selection](images/publishing-profile-profile-selection.png?raw=true)
+		
+	_Selecting a publishing profile file_
 
-	![Configuring service package deployment](images/configuring-service-package-deployment.png?raw=true)
+1. In the **Connection page**, leave the imported values and click **Next**.
 
-	_Configuring service package deployment_
+	![Publishing profile imported](images/publishing-profile-imported.png?raw=true "Publishing profile imported")
 
-1.	Click **OK** to start the deployment. 
-1.	Click **Yes** to override and submit the deployment request. Notice that the package begins to upload and that the portal shows the status of the deployment to indicate its progress.
+	_Publishing profile imported_
 
-	![Uploading a service package to the Windows Azure Management Portal](images/uploading-a-service-package-to-the-windows-az.png?raw=true)
+1. In the **Settings** page, leave the default values and click **Next**.
 
-	_Uploading a service package to the Windows Azure Management Portal_
+	![Publishing profile, Settings page](images/publishing-profile-settings-page.png?raw=true "Publishing profile, Settings page")
 
-1.	The deployment will take several minutes to complete. While you wait for the deploy process to finish, as depicted in the diagram below, you can continue with the next exercise to configure your client application to deliver notifications using your new Notification App Server.
+	_Publishing profile - Settings_
 
-	> **Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
+1. In the **Preview** page, click **Publish**.
 
-	![Package successfully deployed](images/package-successfully-deployed.png?raw=true)
+	![Publishing Profile - Preview Page](images/publishing-profile-preview-page.png?raw=true "Publishing Profile - Preview Page")
 
-	_Package successfully deployed_
+	_Publishing Profile - Preview Page_
 
-<a name="Exercise2" />
-### Exercise 2: Configure a Windows Metro Style Client application for Notifications ###
+	>**Note:** If this is the first time you deploy the web site, you will be prompted to accept a certificate. After the message appears, click **Accept**. 
+	>
+	> ![Publishing certificate error](images/publishing-certificate-error.png?raw=true "Publishing certificate error")
+	>
+
+	
+
+<a name="Exercise1" />
+### Exercise 1: Configure a Windows Metro Style Client application for Notifications ###
 
 In this exercise, you will configure your client application to request a notification channel from the WNS and register this channel with your Notification App Server running in Windows Azure.
 
-<a name="Ex2Task1" />
+<a name="Ex1Task1" />
 #### Task 1 – Configuring the package.appmanifest for Push Notifications ####
 
-In this task, you will update the package.appmanifest to receive Wide Tile notifications using Visual Studio 11 Express.
+In this task, you will update the package.appmanifest to receive Wide Tile notifications using Visual Studio 2012.
 
-1.	Return to your Windows Metro Style client application in **Visual Studio 11 Express**. 
+1.	Return to your Windows Metro Style client application in **Visual Studio 2012**. 
 1.	In **Solution Explorer** double click **package.appmanifest**.
 
 	![Updating your client app with WNS credentials](images/updating-your-client-app-with-wns-credentials.png?raw=true)
@@ -320,7 +284,7 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 
 1.	**Close** and **Save** changes to **package.appmanifest**.
 
-<a name="Ex2Task2" />
+<a name="Ex1Task2" />
 #### Task 2 – Updating the Client Codebase for Notifications ####
 
 In this task, you will update your client application to be able to send push notifications using the Notification App Server.
@@ -332,11 +296,10 @@ In this task, you will update your client application to be able to send push no
 
 	_Add notifications.js to your client application_
 
-1.	Open **notifications.js** file and update _[YOUR_SUBDOMAIN]_ in http:// _[YOUR_SUBDOMAIN]_.cloudapp.net/ChannelRegistrationService to use the **DNS prefix** from the DNS Name in **Windows Azure Management Portal** (https://windows.azure.com) that you configured in the previous exercise a per the figure below:
+1. Open **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints.  You obtain the **DNS** value from the web site you created in the **Winows Azure Management Portal** in the previous exercise.
 
-	![Set the DNS prefix of your hosted service](images/set-the-dns-prefix-of-your-hosted-service.png?raw=true)
+	`var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";`
 
-	_Set the DNS prefix of your hosted service_
 
 1.	Open **default.html** within the Solution Explorer and add a **script reference** to _/js/notifications.js_ and a **div** tag with id _statusMessage_.
 
@@ -374,30 +337,24 @@ In this task, you will update your client application to be able to send push no
 1.	In the **Build** menu, click **Build Solution** to ensure your builds.
 1.	Open **notifications.js** and locate the **openNotificationsChannel()** method. This method will create a Push Notification Channel for the Notification App Server.
 
-<a name="Exercise3" />
-### Exercise 3: Sending Push Notifications ###
+<a name="Exercise2" />
+### Exercise 2: Sending Push Notifications ###
 
 This section describes how to run your client application and send notifications to it through the notification app server deployed to Windows Azure in the previous exercises.  
 
-<a name="Ex3Task1" />
-#### Task 1 – Confirm your Hosted Service deployment to Windows Azure is complete ####
+<a name="Ex2Task1" />
+#### Task 1 – Confirm your Web Site deployment to Windows Azure is complete ####
 
 In this task, you will verify that your application was correctly deployed to Windows Azure.
 
-1.	Navigate to your deployed hosted service http://**\<notificationsappserver\>**.cloudapp.net.
+1.	Navigate to your deployed web site http://**\<notificationsappserver\>**.cloudapp.net.
 
 	![Notification App Server portal running in Windows Azure](images/notification-app-server-portal-running-in-win.png?raw=true)
 
 	_Notification App Server portal running in Windows Azure_
 
-	>**Note:**
-	>
-	>1. Ensure to replace the \<notificationappserver\> with the dns prefix of your Windows Azure deployment.
-	>2. If your site still does not load return to http://windows.azure.com and ensure that your hosted service deployment is complete in the ready state.  As depicted below:
-	>
-	>![Deployment in Ready State](images/deployment-in-ready-state.png?raw=true)
 
-<a name="Ex3Task2" />
+<a name="Ex2Task2" />
 #### Task 2 – Running the Notification enabled Windows Metro Style App ####
 
 In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
@@ -409,8 +366,8 @@ In this task, you will run the client application you created in the previous ex
 
 	_Client output after successful channel request from WNS and registering with notification app server_
 
-<a name="Ex3Task3" />
-#### Task 3 – Sending Push Notifications using the ASP .NET MVC 3 Portal ####
+<a name="Ex2Task3" />
+#### Task 3 – Sending Push Notifications using the ASP .NET MVC 4 Portal ####
 
 Now that a channel has been successfully requested from WNS and registered with your Notification App Server we can now start to send notifications through the portal.
 
@@ -446,7 +403,7 @@ Now that a channel has been successfully requested from WNS and registered with 
 
 	_Notification sent confirmation_
 
-	>**Note:**  If you are getting a 403 unauthorized or no notifications showing up please try refreshing the page to ensure that the channel that you are sending to is refreshed.  Following this, please check that you created your WNS credentials with the correct CN from your package.appxmanifest and that you have configured your package.appxmanifest and ServiceConfiguration.cscfg correctly.
+	>**Note:**  If you are getting a 403 unauthorized or no notifications showing up please try refreshing the page to ensure that the channel that you are sending to is refreshed.  Following this, please check that you created your WNS credentials with the correct CN from your package.appxmanifest and that you have configured your package.appxmanifest and Web.config correctly.
 
 1.	Now you will see how to send a _Tile_ notification. Select **Tile** in the first drop-down and then select the **TileWideImageAndText01** template.
 1.	Configure the template column with:
@@ -485,9 +442,9 @@ Now that a channel has been successfully requested from WNS and registered with 
 ## Summary ##
 By completing this Hands-On Lab you have learned how to:
 
--	 Use the Windows Azure Management Portal to create storage accounts and hosted service components.
+-	 Use the Windows Azure Management Portal to create storage accounts and web site components.
 -	Use the WNS and Live Connect Portal to request credentials for use with WNS.
--	Deploy service component packages using the Windows Azure Management Portal user interface.
+-	Deploy a web site using Web Deploy.
 -	Configure a Windows Metro Style client to receive notifications.
 -	Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
