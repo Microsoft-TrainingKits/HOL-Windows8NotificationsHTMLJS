@@ -4,7 +4,7 @@
 
 <a name="Overview" />
 ## Overview ##
-In this hands-on lab, you will learn how to deploy a version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then utilize this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows Metro Style client application.
+In this hands-on lab, you will learn how to deploy a version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then utilize this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows 8 Style UI client application.
 
 ![Windows Azure Toolkit for Windows 8 delivering a notification via WNS](images/windows-azure-toolkit-for-windows-8-deliverin.png?raw=true)
 
@@ -20,7 +20,7 @@ In this hands-on lab, you will learn how to:
 - Use the Windows Azure Management Portal to create storage accounts and hosted service components.
 - Use the Windows Push Notification and Live Connect Portal to request credentials for use with WNS.
 - Deploy web site using Web Deploy.
-- Configure a Windows Metro Style client to receive notifications
+- Configure a Windows 8 Style UI client to receive notifications
 - Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
 <a name="Prerequisites" />
@@ -29,7 +29,7 @@ In this hands-on lab, you will learn how to:
 You must have the following items to complete this lab:
 
 - [Visual Studio 2012 Express for Windows 8][1] or greater.
-- A Windows Azure subscription with the Web Sites Preview enabled - you can sign up for free trial [here](http://bit.ly/WindowsAzureFreeTrial)
+- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
 
@@ -54,7 +54,7 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 This hands-on lab includes the following exercises:
 
 *	[Getting Started: Deploying the Notification App Server Using Web Deploy](#GettingStarted)
-*	[Exercise 1: Configure a Windows Metro Style Client application for Push Notifications](#Exercise1)
+*	[Exercise 1: Configure a Windows 8 Style UI Client application for Push Notifications](#Exercise1)
 *	[Exercise 2: Sending Push Notifications](#Exercise2)
 
 Estimated time to complete this lab: **45 minutes**.
@@ -153,7 +153,7 @@ In this task, you will update the Connection String values within the web config
 #### Task 3 – Requesting WNS Credentials and updating the Web.config ####
 In this task, you will obtain the Windows Push Notification Services (WNS) credentials and use them to update the Web Configuration file.
 
-1.	To request **WNS** credentials you will require your publisher credentials for your metro style app.  In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Metro Style application or create a new application. 
+1.	To request **WNS** credentials you will require your publisher credentials for your Windows 8 Style UI app.  In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application. 
 
 	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
 
@@ -247,7 +247,7 @@ In this task, you will deploy the Notification App Server to Windows Azure using
 	
 
 <a name="Exercise1" />
-### Exercise 1: Configure a Windows Metro Style Client application for Notifications ###
+### Exercise 1: Configure a Windows 8 Style UI Client application for Notifications ###
 
 In this exercise, you will configure your client application to request a notification channel from the WNS and register this channel with your Notification App Server running in Windows Azure.
 
@@ -256,7 +256,7 @@ In this exercise, you will configure your client application to request a notifi
 
 In this task, you will update the package.appmanifest to receive Wide Tile notifications using Visual Studio 2012.
 
-1.	Return to your Windows Metro Style client application in **Visual Studio 2012**. 
+1.	Return to your Windows 8 Style UI client application in **Visual Studio 2012**. 
 1.	In **Solution Explorer** double click **package.appmanifest**.
 
 	![Updating your client app with WNS credentials](images/updating-your-client-app-with-wns-credentials.png?raw=true)
@@ -355,11 +355,11 @@ In this task, you will verify that your application was correctly deployed to Wi
 
 
 <a name="Ex2Task2" />
-#### Task 2 – Running the Notification enabled Windows Metro Style App ####
+#### Task 2 – Running the Notification enabled Windows 8 Style UI App ####
 
 In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
 
-1.	Return to your Windows Metro Style App where you configured the notifications.
+1.	Return to your Windows 8 Style UI App where you configured the notifications.
 1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel()** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
 
 	![Client output after successful channel request from WNS and registering with notification app server](images/client-output-after-successful-channel-reques.png?raw=true)
@@ -381,7 +381,7 @@ Now that a channel has been successfully requested from WNS and registered with 
 
 	_Notification App Server Home Page_
 
-1.	Click the **Push Notifications** menu option. Here you will see the channel that you requested using the sample Metro app that registered with your Web Role.
+1.	Click the **Push Notifications** menu option. Here you will see the channel that you requested using the sample Windows 8 Style UI app that registered with your Web Role.
 
 	![Pushing Notifications](images/pushing-notifications.png?raw=true)
 	
@@ -445,7 +445,7 @@ By completing this Hands-On Lab you have learned how to:
 -	 Use the Windows Azure Management Portal to create storage accounts and web site components.
 -	Use the WNS and Live Connect Portal to request credentials for use with WNS.
 -	Deploy a web site using Web Deploy.
--	Configure a Windows Metro Style client to receive notifications.
+-	Configure a Windows 8 Style UI client to receive notifications.
 -	Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
 If you would like the full codebase for the **Notification App Server** to update for your own applications please download the **Windows Azure Training Kit for Windows 8** (http://watwindows8.codeplex.com).
