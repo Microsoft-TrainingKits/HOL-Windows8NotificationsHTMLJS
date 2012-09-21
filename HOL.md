@@ -4,7 +4,7 @@
 
 <a name="Overview" />
 ## Overview ##
-In this hands-on lab, you will learn how to deploy a version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then utilize this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows 8 Style UI client application.
+In this hands-on lab, you will learn how to deploy a version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then use this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows 8 Style UI client application.
 
 ![Windows Azure Toolkit for Windows 8 delivering a notification via WNS](images/windows-azure-toolkit-for-windows-8-deliverin.png?raw=true)
 
@@ -77,9 +77,9 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 	_Signing in to the Windows Azure platform Management portal_
 
 
-1. First, you will create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Storage Account** | **Quick Create**.
+1. First, you will create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
 
-1. Set a unique **URL**, for example _myNotificationAppServer_, and click the **Tick** to continue.
+1. Set a unique **URL**, for example _notificationapp_, and click the **Tick** to continue.
  
 	![Creating a new storage account](images/creating-a-new-storage-account.png?raw=true)
 
@@ -114,7 +114,7 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 
 1. Go back to the portal home page, and select **Web Sites**.
 
-1. Select **New**, then select **Web Site** from the list and then **Quick Create**.
+1. Select **New**, then select **Compute** | **Web Site** from the list and then **Quick Create**.
 
 1. Choose a name for your Web Site and then select **Create Web Site**
 
@@ -127,7 +127,7 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 #### Task 2 – Updating the application with your Storage Account Name and Key ####
 In this task, you will update the Connection String values within the web configuration file using the Storage Account you created in the previous task.
 
-1. In a new instance of **Visual Studio 2012**, open **Services.sln** located in the **Assets** folder.  This is the Notification App Server.
+1. In a new instance of **Visual Studio 2012**, open **Services.sln** located in the **Source/Assets/Server/Notifications.Backend** folder.  This is the Notification App Server.
 
 1. Open **Web.config**.  In the **appsettings** section, replace the value of the **DataConnectionString** setting using the recommended format as shown in the commented lines in the snippet below.
 
@@ -141,13 +141,7 @@ In this task, you will update the Connection String values within the web config
 
 
 	````
-1. Save your changes.
-
-1. Open the **Package Manager Console**, and in the Package Sources window add the subfolders located in the **Assets/Server/Nugets** folder as new sources.
-
-1. Change the Package source in the Package Manager Console to **All**.
-
-1. Build the solution.
+1. Press **CTRL+SHIFT+B** to build the solution.
 
 <a name="GSTask3" />
 #### Task 3 – Requesting WNS Credentials and updating the Web.config ####
@@ -155,7 +149,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 1.	To request **WNS** credentials you will require your publisher credentials for your Windows 8 Style UI app.  In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application. 
 
-	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank Application**. Press **OK**.
+	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank App**. Press **OK**.
 
 1.	In solution explorer open your **package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
 
