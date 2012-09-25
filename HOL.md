@@ -145,7 +145,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 1.	To request **WNS** credentials you will require your publisher credentials for your Windows 8 Style UI app.  In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application. 
 
-	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 for Windows 8 Express you can use **File** | **New Project** | Select **Templates** | **Javascript** and then **Blank App**. Press **OK**.
+	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 Express for Windows 8 you can use **File** | **New Project** | **Templates** | **Javascript** and then **Blank App**. Press **OK**.
 
 1.	In solution explorer open your **package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
 
@@ -228,6 +228,12 @@ In this task, you will deploy the Notification App Server to Windows Azure using
 
 	_Publishing Profile - Preview Page_	
 
+1.	Navigate to your deployed web site to confirm that it is up and running.
+
+	![Notification App Server portal running in Windows Azure](./Images/notification-app-server-portal-running-in-win.png?raw=true)
+
+	_Notification App Server portal running in Windows Azure_
+
 <a name="Exercise1" />
 ### Exercise 1: Configure a Windows 8 Style UI Client application for Notifications ###
 
@@ -238,7 +244,7 @@ In this exercise, you will configure your client application to request a notifi
 
 In this task, you will update the package.appmanifest to receive Wide Tile notifications using Visual Studio 2012.
 
-1.	Return to your Windows 8 Style UI client application in **Visual Studio 2012**.
+1.	Return to your Windows 8 Style UI client application in **Visual Studio 2012 Express for Windows 8**.
 
 1.	In **Solution Explorer** double click **package.appmanifest**.
 
@@ -246,7 +252,7 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 
 	_Updating your client app with WNS credentials_
 
-1.	In order to enable your application to receive **Wide Tile** notifications, click **Browse** on Wide Logo and navigate to the **Assets/Client** folder. Then, select **widelogo.png** and click **Open**.
+1.	In order to enable your application to receive **Wide Tile** notifications, click **Browse** on Wide Logo and navigate to the **Source/Assets/Client/JS** folder. Then, select **widelogo.png** and click **Open**.
 
 	![Adding a wide logo to your application](./Images/adding-a-wide-logo-to-your-application.png?raw=true)
 
@@ -273,9 +279,9 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 
 In this task, you will update your client application to be able to send push notifications using the Notification App Server.
 
-1.	In Solution Explorer **Right click** the **js** folder and select **add existing item**.
+1.	In Solution Explorer **Right click** the **js** folder and select **Add | Existing Item**.
 
-1.	Browse to the **Assets/Client**  folder, select **notifications.js** and click **Add**.
+1.	Browse to the **Source/Assets/Client/JS**  folder, select **notifications.js** and click **Add**.
 
 	![Add notifications.js to your client application](./Images/add-notificationsjs-to-your-client-applicatio.png?raw=true)
 
@@ -330,22 +336,11 @@ In this task, you will update your client application to be able to send push no
 This section describes how to run your client application and send notifications to it through the notification app server deployed to Windows Azure in the previous exercises.  
 
 <a name="Ex2Task1" />
-#### Task 1 – Confirm your Web Site deployment to Windows Azure is complete ####
-
-In this task, you will verify that your application was correctly deployed to Windows Azure.
-
-1.	Navigate to your deployed web site http://**\<notificationsappserver\>**.cloudapp.net.
-
-	![Notification App Server portal running in Windows Azure](./Images/notification-app-server-portal-running-in-win.png?raw=true)
-
-	_Notification App Server portal running in Windows Azure_
-
-<a name="Ex2Task2" />
-#### Task 2 – Running the Notification enabled Windows 8 Style UI App ####
+#### Task 1 – Running the Notification enabled Windows 8 Style UI App ####
 
 In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
 
-1.	Return to your Windows 8 Style UI App where you configured the notifications.
+1.	Open the **Notifications.Client.sln** Style UI App located under **Source/Ex2-SendingPushNotifications/Begin** folder.
 
 1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel()** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
 
@@ -353,8 +348,8 @@ In this task, you will run the client application you created in the previous ex
 
 	_Client output after successful channel request from WNS and registering with notification app server_
 
-<a name="Ex2Task3" />
-#### Task 3 – Sending Push Notifications using the ASP .NET MVC 4 Portal ####
+<a name="Ex2Task2" />
+#### Task 2 – Sending Push Notifications using the ASP .NET MVC 4 Portal ####
 
 Now that a channel has been successfully requested from WNS and registered with your Notification App Server we can now start to send notifications through the portal.
 
