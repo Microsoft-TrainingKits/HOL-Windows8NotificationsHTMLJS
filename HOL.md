@@ -231,14 +231,7 @@ In this task, you will deploy the Notification App Server to Windows Azure using
 
 	![Publishing Profile - Preview Page](Images/publishing-profile-preview-page.png?raw=true "Publishing Profile - Preview Page")
 
-	_Publishing Profile - Preview Page_
-
-	>**Note:** If this is the first time you deploy the web site, you will be prompted to accept a certificate. After the message appears, click **Accept**. 
-	>
-	> ![Publishing certificate error](Images/publishing-certificate-error.png?raw=true "Publishing certificate error")
-	>
-
-	
+	_Publishing Profile - Preview Page_	
 
 <a name="Exercise1" />
 ### Exercise 1: Configure a Windows 8 Style UI Client application for Notifications ###
