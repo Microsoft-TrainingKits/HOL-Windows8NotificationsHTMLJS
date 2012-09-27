@@ -1,23 +1,8 @@
-﻿// ----------------------------------------------------------------------------------
-// Microsoft Developer & Platform Evangelism
-// 
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// 
-// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
-// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES 
-// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
-// ----------------------------------------------------------------------------------
-// The example companies, organizations, products, domain names,
-// e-mail addresses, logos, people, places, and events depicted
-// herein are fictitious.  No association with any real company,
-// organization, product, domain name, email address, logo, person,
-// places, or events is intended or should be inferred.
-// ----------------------------------------------------------------------------------
-
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Notifications.Backend.App_Start.NotificationService), "PreStart")]
 
 namespace Notifications.Backend.App_Start
 {
+    using System.Configuration;
     using System.Net.Http;
     using System.Web.Http.Controllers;
     using System.Web.Routing;
@@ -45,7 +30,15 @@ namespace Notifications.Backend.App_Start
                     c.AuthorizeRegistrationRequest = AuthorizeUserRequest;
 
                     // TODO: Replace with your own Windows Azure Storage account name and key, or read it from a configuration file
-                    c.StorageProvider = new WindowsAzureEndpointRepository(CloudStorageAccount.DevelopmentStorageAccount);
+                    CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSettingPublisher) =>
+                    {
+                        var connectionString = ConfigurationManager.AppSettings[configName];
+                        configSettingPublisher(connectionString);
+                    });
+
+                    //var act = new CloudStorageAccount(new StorageCredentialsAccountAndKey("ajholwp","DMZ6Gaec53G7EF4u4HcsgUjZCRutx0pKxwi40s+u1DRPwUow+UaZSb1fhbpdTFsDpsuOYMZqai/Bv83suRfVUQ=="), true);
+                    var act = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+                    c.StorageProvider = new WindowsAzureEndpointRepository(act);
 
                     // TODO: Specify the handlers you want for ASP.NET Web API Registration Service (authentication, logging, etc)
                     // c.DelegatingHandlers = new[] { // Your DelegatingHandler instances };
@@ -74,7 +67,7 @@ namespace Notifications.Backend.App_Start
                 }
 
                 // Since the content is now disposed, we need to restore it so it reaches the action
-				message.Content = new ObjectContent<Endpoint>(endpoint, context.ControllerContext.Configuration.Formatters[0]);
+                message.Content = new ObjectContent<Endpoint>(endpoint, context.ControllerContext.Configuration.Formatters[0]);
             }
             else
             {
