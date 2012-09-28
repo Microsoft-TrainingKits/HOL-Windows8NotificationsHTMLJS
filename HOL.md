@@ -396,7 +396,7 @@ In this task, you will run the client application you created in the previous ex
 
 1.	Open the **Notifications.Client.sln** Style UI App located under **Source/Ex2-SendingPushNotifications/Begin** folder. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
-	> **Note:** If you chose to open the solution in the Begin folder, you will have to open the **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints. You obtain the **DNS** value from the web site you created in the **Windows Azure Management Portal** in the previous exercise.
+	> **Note:** If you chose to open the solution in the Begin folder, you will have to open the **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints. You obtain the **DNS** value from the web site you created in the **Windows Azure Management Portal**.
 
 	>	`var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";`
 
