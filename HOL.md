@@ -145,7 +145,15 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 1.	In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application. 
 
-	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 Express for Windows 8 you can use **File** | **New Project** | **Templates** | **Javascript** and then **Blank App**. Press **OK**.
+	> **Note:** If it's the first time you create a Windows Syle UI application you will be prompted to get a developer license for Windows 8 to develop this kind of applications. In the Developer License window, click **I Agree**.
+	
+	> ![Getting a Developer License](Images/getting-developer-license.png?raw=true "Getting a Developer License")
+	
+	> You will be requested to sign in using your Microsoft credentials. Do so and click **Sign In**. Now you have a developer license.
+
+	> ![Inserting credentials to obtain a developer license](Images/inserting-credentials-developer-license.png?raw=true "Inserting credentials to obtain a developer license")
+
+	> ![Developer License successfully obtained](Images/developer-license-succesfully-obtained.png?raw=true "Developer License successfully obtained")
 
 1.	In solution explorer open your **package.appxmanifest** and select the **Packaging** tab.  We will use the **Package Display Name** for creating your **WNS** Credentials.
 
@@ -167,7 +175,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	_Giving your app a unique name_
 
-1.	In the App name field, insert the Package Display Name in the **package.appxmanifest** file of your solution and click **Reserve app name**. Then click **Save** to confirm the reservation.
+1.	In the App name field, insert the Package Display Name that is inside the **package.appxmanifest** file of your solution and click **Reserve app name**. Then click **Save** to confirm the reservation.
 
 	![Reserving an app name](./Images/app-name-windows-store.png?raw=true)
 
