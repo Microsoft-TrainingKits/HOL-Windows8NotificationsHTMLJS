@@ -147,7 +147,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	> **Note:**  If you do not have an existing client application for step 1 in Visual Studio 2012 Express for Windows 8 you can use **File** | **New Project** | **Templates** | **Javascript** and then **Blank App**. Press **OK**.
 
-1.	In solution explorer open your **package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** for creating your **WNS** Credentials.
+1.	In solution explorer open your **package.appxmanifest** and select the **Packaging** tab.  We will use the **Package Display Name** for creating your **WNS** Credentials.
 
 	![Opening package.appxmanifest](./Images/opening-packageappxmanifest.png?raw=true)
 
@@ -341,7 +341,7 @@ In this task, you will update your client application to be able to send push no
 
 	_Add notifications.js to your client application_
 
-1. Open **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints.  You obtain the **DNS** value from the web site you created in the **Winows Azure Management Portal** in the previous exercise.
+1. Open **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints.  You obtain the **DNS** value from the web site you created in the **Windows Azure Management Portal** in the previous exercise.
 
 	`var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";`
 
@@ -394,7 +394,11 @@ This section describes how to run your client application and send notifications
 
 In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
 
-1.	Open the **Notifications.Client.sln** Style UI App located under **Source/Ex2-SendingPushNotifications/Begin** folder.
+1.	Open the **Notifications.Client.sln** Style UI App located under **Source/Ex2-SendingPushNotifications/Begin** folder. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
+
+	> **Note:** If you chose to open the solution in the Begin folder, you will have to open the **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints. You obtain the **DNS** value from the web site you created in the **Windows Azure Management Portal** in the previous exercise.
+
+	>	`var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";`
 
 1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel()** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
 
