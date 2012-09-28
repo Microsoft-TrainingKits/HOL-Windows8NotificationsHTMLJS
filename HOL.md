@@ -161,11 +161,13 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 1.	The browser will display the Windows Store page that you will use to obtain your WNS credentials. In the Submit an app section, click **App Name**.
 
+	> **Note:** You will have to sign in using your Microsoft Account to access the Windows Store.
+
 	![Giving your app a unique name](./Images/giving-app-name-windows-store.png?raw=true)
 
 	_Giving your app a unique name_
 
-1.	In the App name field, insert the Package Display Name in the **package.appxmanifest** file of your solution and click **Reserve app name**. Click **Save** to confirm the reservation.
+1.	In the App name field, insert the Package Display Name in the **package.appxmanifest** file of your solution and click **Reserve app name**. Then click **Save** to confirm the reservation.
 
 	![Reserving an app name](./Images/app-name-windows-store.png?raw=true)
 
@@ -175,7 +177,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	_Confirming the app name reservation_
 
-1. Now you will have to identify your application to get a name and a publisher to insert in the **package.appxmanifest** file. In the Submit an app page, click **Advanced Features**.
+1. Now you will have to identify your application to get a name and a publisher to insert in the **package.appxmanifest** file. In the Submit an app page, click **Advanced features**.
 
 	![Configuring push notifications for the Notifications.Client app](./Images/app-name-reverved-completely-windows-store.png?raw=true)
 
@@ -193,13 +195,13 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	_Push notifications Overview page_
 
-1. Now we have to set the Identity Name and Publisher of our **package.appxmanifest** file with the information in Windows Store. Go back to Visual Studio, right-click the **package.appxmanifest** and select View Code. Replace the Name and Publisher attributes of the Identity element with the ones obtained in Windows Store. Click **Authenticating your service**.
+1. Now we have to set the Identity Name and Publisher of our **package.appxmanifest** file with the information in Windows Store. Go back to Visual Studio, right-click the **package.appxmanifest** and select **View Code**. Replace the Name and Publisher attributes of the Identity element with the ones obtained in Windows Store. Click **Authenticating your service**.
 
 	![Setting Identity Name and Publisher](./Images/app-identification.png?raw=true)
 
 	_Setting Identity Name and Publisher_
 
-1. Finally we have our WNS credentials, a **Package Security Identifier (SID)** and a **Client secret**.
+1. Finally we obtained a **Package Security Identifier (SID)** and a **Client secret**, which are the WNS Credentials that we need to update the Web configuration of our Notification App Server.
 
 	![Package Security Identifier (SID) and Client secret](./Images/sid-client-secret.png?raw=true)
 
@@ -300,7 +302,7 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 
 	_Associating App with Store_
 
-1. In the Associate Your App with the Windows Store Wizard, click **Sign In**.
+1. In the Associate Your App with the Windows Store wizard, click **Sign In**.
 
 	![Associating App with Store Wizard](./Images/associate-app-with-store.png?raw=true)
 
