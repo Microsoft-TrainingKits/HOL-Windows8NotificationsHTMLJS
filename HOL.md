@@ -143,7 +143,7 @@ In this task, you will update the Connection String values within the web config
 #### Task 3 – Requesting WNS Credentials and updating the Web.config ####
 In this task, you will obtain the Windows Push Notification Services (WNS) credentials and use them to update the Web Configuration file.
 
-1.	In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application. 
+1.	In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application by clicking **File | New Project | Installed Templates | JavaScript | Windows Store | Blank App**. 
 
 	> **Note:** If it's the first time you create a Windows Syle UI application you will be prompted to get a developer license for Windows 8 to develop this kind of applications. In the Developer License window, click **I Agree**.
 	
