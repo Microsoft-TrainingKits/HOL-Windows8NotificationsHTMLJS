@@ -28,11 +28,13 @@ In this hands-on lab, you will learn how to:
 
 You must have the following items to complete this lab:
 
-- [Visual Studio 2012 Express for Windows 8][1] or greater.
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial][2]
+- [Visual Studio Express 2012 for Web][1] or greater.
+- [Visual Studio 2012 Express for Windows 8][2] or greater.
+- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial][3]
 
-[1]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
-[2]:http://aka.ms/WATK-FreeTrial
+[1]:http://www.microsoft.com/visualstudio/
+[2]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
+[3]:http://aka.ms/WATK-FreeTrial
 
 >**Note:** This lab was designed to use Windows 8 Operating System.
 
