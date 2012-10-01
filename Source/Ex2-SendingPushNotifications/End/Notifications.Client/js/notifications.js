@@ -6,10 +6,9 @@
 var channel;
 var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";
 var appId = "MyApp1";
-var tileId = "MyTile";
-var clientId = "MyClient1";
+var deviceId = "MyDevice1";
 var userId = "UserId1";
-var deviceType = "Windows 8 JS client";
+var tileId = "MyTile";
 
 function openNotificationsChannel() {
     var pushNotifications = Windows.Networking.PushNotifications;
@@ -32,11 +31,11 @@ function updateChannelUri(channel, channelExpiration, callNumber) {
         {
             ApplicationId: appId,
             ChannelUri: channel,
-            ExpirationTime: channelExpiration,
-            TileId: tileId,
-            ClientId: clientId,
+            Expiry: channelExpiration.toString(),
+            DeviceId: deviceId,
             UserId: userId,
-            DeviceType: deviceType
+            TileId: tileId,
+            ClientId: deviceId 
         };
 
         UpdateStatusMessage("2. Attempting to registering channel URI with Notification App Server at " + serverUrl);
@@ -60,7 +59,7 @@ function closeNotificationsChannel() {
             UpdateStatusMessage("Deleting User Channel URI from server");
             var xhr = new WinJS.xhr({
                 type: "DELETE",
-                url: serverUrl + "/" + appId + "/" + clientId + "/" + tileId,
+                url: serverUrl + "/" + appId + "/" + deviceId,
                 headers: { "Content-Type": "application/json; charset=utf-8" }
             }).then(function (req) {
                 UpdateStatusMessage("Channel URI deleted from server!");
