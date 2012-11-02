@@ -80,7 +80,7 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 
 1. First, you will create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
 
-1. Set a unique **URL**, for example _notificationapp_, and click the **Tick** to continue.
+1. Set a unique **URL**, for example _notificationapp_, and select **Create Storage Account**.
  
 	![Creating a new storage account](./Images/creating-a-new-storage-account.png?raw=true)
 
@@ -96,27 +96,25 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 
 	_Storage Accounts page_
 
-1.	In the **Dashboard** page, you will see the **URL** assigned to each service in the storage account. Record the public storage account name, this is the first segment of the URL assigned to your endpoints.
-
-	![Storage Account Dashboard page](./Images/storage-account-dashboard-page.png?raw=true "Storage Account Dashboard page")
-
-	_Storage Account Dashboard page_
-
 1.	Click **Manage Keys** at the bottom of the page in order to show the storage account's access keys.
 
-1. Copy the **Primary access key** value. You will use this value later on to configure the application.
+	![Manage Keys](./Images/manage-keys-option.png?raw=true "Manage Keys")
+
+	_Manage Storage Account Keys_
+
+1. Copy the **Storage Acount Name** and the **Primary access key**. You will use these values later on to configure the application.
 
 	![Manage Storage Account Keys](./Images/manage-storage-account-keys.png?raw=true "Manage Storage Account Keys")
 
 	_Manage Storage Account Keys_
 
-	>**Note:** The **Primary Access Key** and **Secondary** Access **Key** both provide a shared secret that you can use to access storage. The secondary key gives the same access as the primary key and is used for backup purposes. You can regenerate each key independently in case either one is compromised.
+	>**Note:** The **Primary Access Key** and **Secondary Access Key** both provide a shared secret that you can use to access storage. The secondary key gives the same access as the primary key and is used for backup purposes. You can regenerate each key independently in case either one is compromised.
 
 1. Go back to the portal home page, and select **Web Sites**.
 
 1. Select **New**, then select **Compute** | **Web Site** from the list and then **Quick Create**.
 
-1. Choose a name for your Web Site and then select **Create Web Site**
+1. Choose a name for your Web Site and then select **Create Web Site**.
 
 	![Creating a new Web Site](./Images/creating-a-new-web-site.png?raw=true)
 	
@@ -136,7 +134,7 @@ In this task, you will update the Connection String values within the web config
 		connection string for your Windows Azure Storage account. For example:
 		"DefaultEndpointsProtocol=https;AccountName={your storage account name};AccountKey={your storage account key}"
 	-->
-	<add key="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName={your storage account};AccountKey={your storage account key}"/
+	<add key="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName={your storage account};AccountKey={your storage account key}"/>
 	````
 
 1. Press **CTRL+SHIFT+B** to build the solution.
@@ -217,7 +215,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	_Package Security Identifier (SID) and Client secret_
 
-1.	Switch to the Notification App Server, open **Web.config** file and replace _[YOUR_WNS_PACKAGE_SID]_ with the **Package Security Identifier (SID)**  and _[YOUR_WNS_CLIENT_SECRET]_ with the **Client secret**.
+1.	Switch to the Notification App Server, open **Web.config** file and replace _[YOUR_WNS_PACKAGE_SID]_ with the **Package Security Identifier (SID)**  and _[YOUR_WNS_CLIENT_SECRET]_ with the **Client secret** that you obtained either from the Windows Store or from the Windows Push Notifications & Live Connect Portal.
 
 	![Updating Web.config with WNS Credentials](./Images/updating-webconfig-with-wns-cred.png?raw=true)
 
@@ -232,7 +230,7 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 In this task, you will deploy the Notification App Server to Windows Azure using Web Deploy.
 
-1. In the Windows Azure Portal, select **Web Sites**, and then select your Web Site to open the **Dashboard**.  In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link and save the file to a known location. You will use theses settings later to publish the web site from Visual Studio 2012.
+1. In the Windows Azure Portal, select **Web Sites**, and then select your Web Site to open the **Dashboard**.  In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link and save the file to a known location. You will use theses settings later to publish the web site from Visual Studio.
 
 	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate the publishing configuration for web applications to Windows Azure Web Sites.
 
@@ -305,6 +303,8 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 	![Configuring your client application to allow Toast Notifications](./Images/configuring-your-client-application-to-allow.png?raw=true)
 
 	_Configuring your client application to allow Toast Notifications_
+
+	> **Note:** In the following steps of this task you will associate your application with the Windows Store. If you obtained your WNS credentials from the Windows Push Notifications & Live Connect Portal, there is no need to execute these steps.
 
 1.	Click **Store** in the Visual Studio menu and select **Associate App with the Store**.
 
@@ -503,3 +503,5 @@ By completing this Hands-On Lab you have learned how to:
 -	Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
 
 If you would like the full codebase for the **Notification App Server** to update for your own applications please download the **Windows Azure Training Kit for Windows 8** (http://watwindows8.codeplex.com).
+
+---
