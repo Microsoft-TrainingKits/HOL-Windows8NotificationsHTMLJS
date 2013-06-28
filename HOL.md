@@ -292,7 +292,7 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 
 	_Updating your client app with WNS credentials_
 
-1.	In order to enable your application to receive **Wide Tile** notifications, click **Browse** on Wide Logo and navigate to the **Source/Assets/Client/JS** folder. Then, select **widelogo.png** and click **Open**.
+1. In order to enable your application to receive **Wide Tile** notifications, click **Wide Logo** in the **All Image Assets** pane. In the **Scaled Assets** section, click the **...** button located below the **Scale 100** image, and navigate to the **Assets/Client** folder. Then, select **widelogo.png** and click **Open**.
 
 	![Adding a wide logo to your application](./Images/adding-a-wide-logo-to-your-application.png?raw=true)
 
